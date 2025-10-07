@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import Footer from './components/Footer';
-import Main from './components/Main';
-import Nav from './components/Nav';
+import Footer from '../components/Footer';
+import Main from '../components/Main';
+import Nav from '../components/Nav';
 
 function Home() {
     const [count, setCount] = useState(0);
