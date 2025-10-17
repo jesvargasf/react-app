@@ -1,28 +1,68 @@
-import { useState, useEffect } from 'react';
-import Footer from '../components/Footer';
-import Main from '../components/Main';
-import Nav from '../components/Nav';
+import { Link } from 'react-router-dom';
+import { useProducts } from '../hooks/useProducts';
+import ProductCard from '../components/ProductCard';
 
-function Home() {
-    const [count, setCount] = useState(0);
+const Home = () => {
+  const { getFeaturedProducts } = useProducts();
+  const featuredProducts = getFeaturedProducts().slice(0, 6);
 
-    const increment =() => {
-        setCount(count + 1);
-    };
+  return (
+    <main className="main">
+      <section className="hero">
+        <div className="container">
+          <div className="hero-content">
+            <h2>Productos Frescos Directo del Campo</h2>
+            <p>
+              Descubre la mejor selección de frutas, verduras y productos orgánicos de Chile.
+              Frescura garantizada desde el productor hasta tu hogar.
+            </p>
+            <Link to="/tienda" className="cta-button">
+              Ver Productos
+            </Link>
+          </div>
+        </div>
+      </section>
 
-    useEffect(() => {
-        console.log("iniciado")
-    }, [count]);
+      <section className="features">
+        <div className="container">
+          <h2>¿Por qué elegir HuertoHogar?</h2>
+          <div className="features-grid">
+            <article className="feature-card">
+              <div className="feature-icon">🥕</div>
+              <h3>Productos Frescos</h3>
+              <p>Cosechados el mismo día para garantizar máxima frescura y calidad.</p>
+            </article>
+            <article className="feature-card">
+              <div className="feature-icon">🌱</div>
+              <h3>100% Orgánico</h3>
+              <p>Sin pesticidas ni químicos, respetando el medio ambiente.</p>
+            </article>
+            <article className="feature-card">
+              <div className="feature-icon">🚚</div>
+              <h3>Envío Rápido</h3>
+              <p>Entrega en 24 horas en Santiago y regiones metropolitanas.</p>
+            </article>
+            <article className="feature-card">
+              <div className="feature-icon">👨‍🌾</div>
+              <h3>Directo del Productor</h3>
+              <p>Sin intermediarios, apoyando directamente a agricultores locales.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-    return <>
-        <Nav></Nav>
-
-        <Main titulo="Este es el sitio home" contador={count} aumentar={increment}></Main>
-
-        <button onClick={increment}>Aumentar {count}</button>
-
-        <Footer></Footer>
-    </>
-}
+      <section className="featured-products">
+        <div className="container">
+          <h2>Productos Destacados</h2>
+          <div className="products-grid">
+            {featuredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
 
 export default Home;
