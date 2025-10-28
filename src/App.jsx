@@ -8,6 +8,7 @@ import Tienda from './pages/Tienda';
 import Login from './pages/Login';
 import Nosotros from './pages/Nosotros';
 import Noticias from './pages/Noticias';
+import Carrito from './pages/Carrito';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/nosotros" element={<Nosotros />} />
               <Route path="/noticias" element={<Noticias />} />
+              <Route path="/carrito" element={<Carrito />} />
             </Routes>
             <Footer />
           </div>
